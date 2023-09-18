@@ -386,6 +386,7 @@ bool MMU2::tool_change(uint8_t slot) {
 ///- T? Gcode to extrude shouldn't have to follow, load to extruder wheels is done automatically
 ///- Tx Same as T?, except nozzle doesn't have to be preheated. Tc must be placed after extruder nozzle is preheated to finish filament load.
 ///- Tc Load to nozzle after filament was prepared by Tx and extruder nozzle is already heated.
+///- Ts Slack filament line
 bool MMU2::tool_change(char code, uint8_t slot) {
     if (!WaitForMMUReady())
         return false;
@@ -402,6 +403,11 @@ bool MMU2::tool_change(char code, uint8_t slot) {
         thermal_setExtrudeMintemp(0); // Allow cold extrusion since Tx only loads to the gears not nozzle
         tool_change(slot);
         thermal_setExtrudeMintemp(EXTRUDE_MINTEMP);
+    } break;
+
+    case 's': {
+        thermal_setExtrudeMintemp(0); // Allow cold extrusion
+        slack_filament();
     } break;
 
     case 'c': {
@@ -561,6 +567,15 @@ bool MMU2::load_filament_to_nozzle(uint8_t slot) {
         MakeSound(Confirm);
     }
     ScreenUpdateEnable();
+    return true;
+}
+
+bool MMU2::slack_filament() {
+    if (!WaitForMMUReady())
+        return false;
+
+    logic.SlackFilament();
+
     return true;
 }
 

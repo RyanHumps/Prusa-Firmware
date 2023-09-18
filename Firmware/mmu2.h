@@ -100,7 +100,7 @@ public:
     /// @returns false if the operation cannot be performed (Stopped)
     bool tool_change(uint8_t slot);
 
-    /// Handling of special Tx, Tc, T? commands
+    /// Handling of special Tx, Tc, T?, Ts commands
     bool tool_change(char code, uint8_t slot);
 
     /// Unload of filament in collaboration with the MMU.
@@ -115,6 +115,10 @@ public:
     /// Load (push) filament from the MMU into the printer's nozzle
     /// @returns false if the operation cannot be performed (Stopped or cold extruder)
     bool load_filament_to_nozzle(uint8_t slot);
+
+    /// Slack some filament while printing
+    /// @returns false if the operation cannot be performed (Stopped)
+    bool slack_filament();
 
     /// Move MMU's selector aside and push the selected filament forward.
     /// Usable for improving filament's tip or pulling the remaining piece of filament out completely.

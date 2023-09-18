@@ -443,6 +443,7 @@ StepStatus ProtocolLogic::IdleStep() {
         case RequestMsgCodes::Mode:
         case RequestMsgCodes::Tool:
         case RequestMsgCodes::Unload:
+        case RequestMsgCodes::Slack:
             if (rsp.paramCode != ResponseMsgParamCodes::Finished) {
                 return SwitchFromIdleToCommand();
             }
@@ -598,6 +599,10 @@ void ProtocolLogic::ReadRegister(uint8_t address) {
 
 void ProtocolLogic::WriteRegister(uint8_t address, uint16_t data) {
     PlanGenericRequest(RequestMsg(RequestMsgCodes::Write, address, data));
+}
+
+void ProtocolLogic::SlackFilament() {
+    PlanGenericRequest(RequestMsg(RequestMsgCodes::Slack, 0));
 }
 
 void ProtocolLogic::PlanGenericRequest(RequestMsg rq) {

@@ -13,7 +13,7 @@
 static const char duplicate_Tcode_ignored[] PROGMEM = "Duplicate T-code ignored.";
 
 inline bool IsInvalidTCode(char *const s, uint8_t i) { 
-    return ((s[i] < '0' || s[i] > '4') && s[i] != '?' && s[i] != 'x' && s[i] != 'c'); 
+    return ((s[i] < '0' || s[i] > '4') && s[i] != '?' && s[i] != 'x' && s[i] != 'c' && s[i] != 's'); 
 }
 
 inline void TCodeInvalid() { 
@@ -47,6 +47,11 @@ void TCodes(char *const strchr_pointer, uint8_t codeValue) {
         }
     } else if (strchr_pointer[index] == 'c'){
         // load from extruder gears to nozzle (nozzle should be preheated)
+        if (MMU2::mmu2.Enabled()) {
+            MMU2::mmu2.tool_change(strchr_pointer[index], MMU2::mmu2.get_current_tool());
+        }
+    } else if (strchr_pointer[index] == 's'){
+        // slack filament line
         if (MMU2::mmu2.Enabled()) {
             MMU2::mmu2.tool_change(strchr_pointer[index], MMU2::mmu2.get_current_tool());
         }

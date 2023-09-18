@@ -110,6 +110,7 @@ public:
     void Home(uint8_t mode);
     void ReadRegister(uint8_t address);
     void WriteRegister(uint8_t address, uint16_t data);
+    void SlackFilament();
 
     /// Sets the extra load distance to be reported to the MMU.
     /// Beware - this call doesn't send anything to the MMU.
