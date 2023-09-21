@@ -1,5 +1,9 @@
 # Prusa Firmware MK3
 
+The purpose of this fork is to modify the firmware to work with [RyanHumps/Prusa-Firmware-MMU](https://github.com/RyanHumps/Prusa-Firmware-MMU).
+
+---
+
 This repository contains the source code and the development versions of the firmware running on the [Original Prusa i3](https://prusa3d.com/) MK3S/MK3/MK2.5S/MK2.5 line of printers.
 
 The latest official builds can be downloaded from [Prusa Drivers](https://www.prusa3d.com/drivers/). Pre-built development releases are also [available here](https://github.com/prusa3d/Prusa-Firmware/releases).
