@@ -20,7 +20,7 @@
 #define CUSTOM_MENDEL_NAME "Prusa i3 MK2.5S"
 
 // Electronics
-#define MOTHERBOARD BOARD_RAMBO_MINI_1_3
+#define MOTHERBOARD BOARD_RAMBO_MINI_1_0
 
 #define HEATBED_V2
 #define STEEL_SHEET
@@ -90,7 +90,6 @@
 #define DEFAULT_MAX_FEEDRATE_SILENT         {172, 172, 12, 120}      // (mm/sec)   max feedrate (M203), silent mode
 #define DEFAULT_MAX_ACCELERATION      {1000, 1000, 200, 5000}  // (mm/sec^2) max acceleration (M201)
 #define DEFAULT_MAX_ACCELERATION_SILENT     {960, 960, 200, 5000}    // (mm/sec^2) max acceleration (M201), silent mode
-
 
 #define DEFAULT_ACCELERATION          1250   // X, Y, Z and E max acceleration in mm/s^2 for printing moves (M204P)
 #define DEFAULT_RETRACT_ACCELERATION  1250   // X, Y, Z and E max acceleration in mm/s^2 for retracts (M204R)
@@ -382,6 +381,10 @@
 #define FLEX_PREHEAT_HOTEND_TEMP 240
 #define FLEX_PREHEAT_HPB_TEMP 50
 
+#define LCD_JUMP_HOTEND_TEMP 200
+#define LCD_JUMP_BED_TEMP 50
+#define LCD_JUMP_FAN_SPEED 127
+
 /*------------------------------------
  THERMISTORS SETTINGS
  *------------------------------------*/
@@ -444,9 +447,6 @@
 
 #define MAX_BED_TEMP_CALIBRATION 50
 #define MAX_HOTEND_TEMP_CALIBRATION 50
-
-#define MAX_E_STEPS_PER_UNIT 250
-#define MIN_E_STEPS_PER_UNIT 100
 
 #define Z_BABYSTEP_MIN -3999
 #define Z_BABYSTEP_MAX 0

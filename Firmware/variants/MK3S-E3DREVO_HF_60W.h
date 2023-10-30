@@ -14,10 +14,10 @@
 #define PRINTER_MMU_TYPE PRINTER_MK3S_MMU3
 #define PRINTER_MMU_NAME PRINTER_MK3S_MMU3_NAME
 #define FILAMENT_SIZE "1_75mm_MK3S"
-#define NOZZLE_TYPE "E3Dv6full"
+#define NOZZLE_TYPE "E3DREVO_HF_60W"
 
 // Printer name
-#define CUSTOM_MENDEL_NAME "Prusa i3 MK3S"
+#define CUSTOM_MENDEL_NAME "Prusa MK3S-RHF60"
 
 // Electronics
 #define MOTHERBOARD BOARD_EINSY_1_0a
@@ -40,9 +40,7 @@
  *------------------------------------*/
 
 // Steps per unit {X,Y,Z,E}
-//#define DEFAULT_AXIS_STEPS_PER_UNIT   {100,100,3200/8,140}
 #define DEFAULT_AXIS_STEPS_PER_UNIT   {100,100,3200/8,280}
-//#define DEFAULT_AXIS_STEPS_PER_UNIT   {100,100,3200/8,560}
 
 // Endstop inverting
 #define X_MIN_ENDSTOP_INVERTING 0 // set to 1 to invert the logic of the endstop.
@@ -329,13 +327,11 @@
 #define  DEFAULT_Ki 1.60
 #define  DEFAULT_Kd 73.76
 #else
-// Define PID constants for extruder
-//#define  DEFAULT_Kp 40.925
-//#define  DEFAULT_Ki 4.875
-//#define  DEFAULT_Kd 86.085
-#define  DEFAULT_Kp 16.13
-#define  DEFAULT_Ki 1.1625
-#define  DEFAULT_Kd 56.23
+// Define PID constants for E3D REVO HF 60W
+#define  MAX_OVERSHOOT_PID_AUTOTUNE 30
+#define  DEFAULT_Kp 15.00
+#define  DEFAULT_Ki 2.9
+#define  DEFAULT_Kd 19.2
 #endif
 
 // Extrude mintemp
@@ -390,26 +386,26 @@
 #define TEMP_RUNAWAY_EXTRUDER_TIMEOUT 45
 
 // model-based temperature check
-#define TEMP_MODEL 1              // enable model-based temperature checks
-#define TEMP_MODEL_DEBUG 1        // extended runtime logging
+#define THERMAL_MODEL 1              // enable model-based temperature checks
+#define THERMAL_MODEL_DEBUG 1        // extended runtime logging
 
-#define TEMP_MODEL_CAL_C_low 5    // C estimation lower limit
-#define TEMP_MODEL_CAL_C_high 20  // C estimation upper limit
-#define TEMP_MODEL_CAL_C_thr 0.01 // C estimation iteration threshold
-#define TEMP_MODEL_CAL_C_itr 30   // C estimation iteration limit
+#define THERMAL_MODEL_CAL_C_low 5    // C estimation lower limit
+#define THERMAL_MODEL_CAL_C_high 20  // C estimation upper limit
+#define THERMAL_MODEL_CAL_C_thr 0.01 // C estimation iteration threshold
+#define THERMAL_MODEL_CAL_C_itr 30   // C estimation iteration limit
 
-#define TEMP_MODEL_CAL_R_low 5    // R estimation lower limit
-#define TEMP_MODEL_CAL_R_high 50  // R estimation upper limit
-#define TEMP_MODEL_CAL_R_thr 0.01 // R estimation iteration threshold
-#define TEMP_MODEL_CAL_R_itr 30   // R estimation iteration limit
+#define THERMAL_MODEL_CAL_R_low 5    // R estimation lower limit
+#define THERMAL_MODEL_CAL_R_high 50  // R estimation upper limit
+#define THERMAL_MODEL_CAL_R_thr 0.01 // R estimation iteration threshold
+#define THERMAL_MODEL_CAL_R_itr 30   // R estimation iteration limit
 
-#define TEMP_MODEL_CAL_T_low 50   // Default calibration cooling temperature (C)
-#define TEMP_MODEL_CAL_T_high 230 // Default calibration working temperature (C)
+#define THERMAL_MODEL_CAL_T_low 50   // Default calibration cooling temperature (C)
+#define THERMAL_MODEL_CAL_T_high 230 // Default calibration working temperature (C)
 
-#define TEMP_MODEL_Ta_corr -7     // Default ambient temperature correction
+#define THERMAL_MODEL_Ta_corr -7     // Default ambient temperature correction
 
-#include "temp_model/e3d_v6.h"
-#define TEMP_MODEL_DEFAULT E3D_V6 // Default model parameters
+#include "thermal_model/e3d_REVO_HF_60W.h"
+#define THERMAL_MODEL_DEFAULT E3D_REVO_HF_60W // Default E3D REVO HF 60W model parameters
 
 
 /*------------------------------------
@@ -536,6 +532,10 @@
 #define FLEX_PREHEAT_HOTEND_TEMP 240
 #define FLEX_PREHEAT_HPB_TEMP 50
 
+#define LCD_JUMP_HOTEND_TEMP 200
+#define LCD_JUMP_BED_TEMP 50
+#define LCD_JUMP_FAN_SPEED 127
+
 /*------------------------------------
  THERMISTORS SETTINGS
  *------------------------------------*/
@@ -599,9 +599,6 @@
 
 #define MAX_BED_TEMP_CALIBRATION 50
 #define MAX_HOTEND_TEMP_CALIBRATION 50
-
-#define MAX_E_STEPS_PER_UNIT 250
-#define MIN_E_STEPS_PER_UNIT 100
 
 #define Z_BABYSTEP_MIN -3999
 #define Z_BABYSTEP_MAX 0
